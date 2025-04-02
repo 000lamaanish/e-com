@@ -3,12 +3,12 @@ import axios from "axios";
 // Base API instance
 const api = axios.create({
     baseURL: "https://fakestoreapi.com", // Base URL for API requests
-    timeout: 5000, // Request timeout in milliseconds
-    headers: { "Content-Type": "application/json" }, // Default headers
+    timeout: 5000,
+    headers: { "Content-Type": "application/json" },
 });
 
 // Generic GET request function
-export async function fetchData<T>(endpoint: string): Promise<T> {
+export async function fetchProducts<T>(endpoint: string): Promise<T> {
     try {
         const response = await api.get(endpoint);
         return response.data;

@@ -1,6 +1,6 @@
 "use client";
 import { useQuery } from "@tanstack/react-query";
-import { fetchData } from "@/lib/Utils/Api"; // Import the reusable function
+import { fetchProducts } from "@/lib/Utils/Api"; // Import the reusable function
 
 type Product = {
   id: number;
@@ -15,7 +15,7 @@ type Product = {
 export default function Home() {
   const { data, error, isLoading, isError } = useQuery({
     queryKey: ["products"],
-    queryFn: () => fetchData<Product[]>("/products"), // Reusing the function
+    queryFn: () => fetchProducts<Product[]>("/products"), // Reusing the function
   });
 
   if (isLoading) return <p>Loading...</p>;
