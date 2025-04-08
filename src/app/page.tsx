@@ -2,6 +2,9 @@ import Link from "next/link";
 import Navbar from "./component/Navbar";
 import { ModeToggle } from "./component/ModeToggle";
 import ProductList from "./ProductList/page";
+import Sliderpage from "./component/Sliderpage";
+import FeaturedProduct from "./component/featuredpage";
+import Footer from "./component/Footer";
 
 export default function Home() {
 
@@ -9,7 +12,13 @@ export default function Home() {
     <div>
       <Navbar />
       <ModeToggle />
+      <Sliderpage />
+      <FeaturedProduct />
+      <br />
+      <Footer />
       <ProductList />
+
+
     </div>
   );
 }
