@@ -1,28 +1,35 @@
 "use client";
 
 import React, { useState } from "react";
-import { useForm, SubmitHandler } from "react-hook-form";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
 import Input from "../component/Input";
-
-// Define form data type
-interface FormData {
-    name?: string;
-    email: string;
-    password: string;
-}
+import {
+    RegisterFormData,
+    LoginFormData,
+    registerSchema,
+    loginSchema,
+} from "./Schema";
 
 const RegisterForm: React.FC = () => {
     const [isRegister, setIsRegister] = useState<boolean>(false);
-
+    const schema = isRegister ? registerSchema : loginSchema;
     const {
         register,
         handleSubmit,
+        reset,
         formState: { errors },
-    } = useForm<FormData>();
+    } = useForm<RegisterFormData | LoginFormData>({
+        resolver: zodResolver(schema),
+    });
 
-    const onSubmit: SubmitHandler<FormData> = (data) => {
+    const onSubmit = (data: RegisterFormData | LoginFormData) => {
         console.log("Form Data:", data);
         alert(`Form submitted successfully!\n${JSON.stringify(data, null, 2)}`);
+    };
+    const handleModeSwitch = () => {
+        setIsRegister((prev) => !prev);
+        reset();
     };
 
     return (
@@ -37,40 +44,24 @@ const RegisterForm: React.FC = () => {
                         <Input
                             label="Name"
                             type="text"
-                            register={register}
-                            validation={{ required: "Name is required" }}
-                            error={errors.name}
+                            register={register("username")}
+                            error={errors.username?.message}
                         />
                     )}
 
                     <Input
                         label="Email"
                         type="email"
-                        register={register}
-                        validation={{
-                            required: "Email is required",
-                            pattern: {
-                                value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
-                                message: "Invalid email format",
-                            },
-                        }}
-                        error={errors.email}
+                        register={register("email")}
+                        error={errors.email?.message}
                     />
 
                     <Input
                         label="Password"
                         type="password"
-                        register={register}
-                        validation={{
-                            required: "Password is required",
-                            minLength: {
-                                value: 6,
-                                message: "Password must be at least 6 characters",
-                            },
-                        }}
-                        error={errors.password}
+                        register={register("password")}
+                        error={errors.password?.message}
                     />
-
                     <button
                         type="submit"
                         className="w-full mt-4 bg-green-500 text-white py-2 rounded-lg shadow-md hover:bg-green-600 transition"
@@ -81,7 +72,7 @@ const RegisterForm: React.FC = () => {
                     <p className="text-center text-sm text-gray-600 mt-4">
                         {isRegister ? "Already have an account? " : "New to our website? "}
                         <span
-                            onClick={() => setIsRegister(!isRegister)}
+                            onClick={handleModeSwitch}
                             className="text-green-500 font-semibold cursor-pointer hover:underline"
                         >
                             {isRegister ? "Switch to Login" : "Switch to Register"}
