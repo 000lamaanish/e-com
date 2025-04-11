@@ -3,23 +3,28 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import Input from "../component/Input";
 import {
     RegisterFormData,
     LoginFormData,
     registerSchema,
     loginSchema,
 } from "./Schema";
+import {
+    Form,
+    FormControl,
+    FormField,
+    FormItem,
+    FormLabel,
+    FormMessage,
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
 
 const RegisterForm: React.FC = () => {
     const [isRegister, setIsRegister] = useState<boolean>(false);
     const schema = isRegister ? registerSchema : loginSchema;
-    const {
-        register,
-        handleSubmit,
-        reset,
-        formState: { errors },
-    } = useForm<RegisterFormData | LoginFormData>({
+
+    const form = useForm<RegisterFormData | LoginFormData>({
         resolver: zodResolver(schema),
     });
 
@@ -29,7 +34,7 @@ const RegisterForm: React.FC = () => {
     };
     const handleModeSwitch = () => {
         setIsRegister((prev) => !prev);
-        reset();
+        form.reset();
     };
 
     return (
@@ -39,46 +44,70 @@ const RegisterForm: React.FC = () => {
                     {isRegister ? "Register" : "Login"}
                 </h2>
 
-                <form onSubmit={handleSubmit(onSubmit)} className="mt-6">
-                    {isRegister && (
-                        <Input
-                            label="Name"
-                            type="text"
-                            register={register("username")}
-                            error={errors.username?.message}
+                <Form{...form}>
+                    <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 mt-6">
+                        {isRegister && (
+                            <FormField
+                                control={form.control}
+                                name="username"
+                                render={({ field }) => (
+                                    <FormItem>
+                                        <FormLabel>Username</FormLabel>
+                                        <FormControl>
+                                            <Input placeholder="Enter your name" {...field} />
+                                        </FormControl>
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
+                        )}
+
+                        <FormField
+                            control={form.control}
+                            name="email"
+                            render={({ field }) => (
+                                <FormItem>
+                                    <FormLabel>Email</FormLabel>
+                                    <FormControl>
+                                        <Input placeholder="Enter your email" {...field} />
+                                    </FormControl>
+                                    <FormMessage />
+                                </FormItem>
+                            )}
                         />
-                    )}
 
-                    <Input
-                        label="Email"
-                        type="email"
-                        register={register("email")}
-                        error={errors.email?.message}
-                    />
-
-                    <Input
-                        label="Password"
-                        type="password"
-                        register={register("password")}
-                        error={errors.password?.message}
-                    />
-                    <button
-                        type="submit"
-                        className="w-full mt-4 bg-green-500 text-white py-2 rounded-lg shadow-md hover:bg-green-600 transition"
-                    >
-                        {isRegister ? "Register" : "Login"}
-                    </button>
-
-                    <p className="text-center text-sm text-gray-600 mt-4">
-                        {isRegister ? "Already have an account? " : "New to our website? "}
-                        <span
-                            onClick={handleModeSwitch}
-                            className="text-green-500 font-semibold cursor-pointer hover:underline"
+                        <FormField
+                            control={form.control}
+                            name="password"
+                            render={({ field }) => (
+                                <FormItem>
+                                    <FormLabel>Password</FormLabel>
+                                    <FormControl>
+                                        <Input type="password" placeholder="••••••••" {...field} />
+                                    </FormControl>
+                                    <FormMessage />
+                                </FormItem>
+                            )}
+                        />
+                        <button
+                            type="submit"
+                            className="w-full mt-4 bg-green-500 text-white py-2 rounded-lg shadow-md hover:bg-green-600 transition"
                         >
-                            {isRegister ? "Switch to Login" : "Switch to Register"}
-                        </span>
-                    </p>
-                </form>
+                            {isRegister ? "Register" : "Login"}
+                        </button>
+
+                    </form>
+                </Form>
+
+                <p className="text-center text-sm text-gray-600 mt-4">
+                    {isRegister ? "Already have an account? " : "New to our website? "}
+                    <span
+                        onClick={handleModeSwitch}
+                        className="text-green-500 font-semibold cursor-pointer hover:underline"
+                    >
+                        {isRegister ? "Switch to Login" : "Switch to Register"}
+                    </span>
+                </p>
             </div>
         </div>
     );
