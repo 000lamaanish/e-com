@@ -19,6 +19,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { toast } from "sonner";
 
 const RegisterForm: React.FC = () => {
     const [isRegister, setIsRegister] = useState<boolean>(false);
@@ -26,11 +27,20 @@ const RegisterForm: React.FC = () => {
 
     const form = useForm<RegisterFormData | LoginFormData>({
         resolver: zodResolver(schema),
+        defaultValues: {
+            username: "",
+            email: "",
+            password: "",
+        },
     });
 
     const onSubmit = (data: RegisterFormData | LoginFormData) => {
         console.log("Form Data:", data);
-        alert(`Form submitted successfully!\n${JSON.stringify(data, null, 2)}`);
+        //  Use toast from sonner
+        toast.success(
+            `${isRegister ? "Registered" : "Logged in"} successfully! 🎉`,
+            { description: "Data saved successfully." }
+        );
     };
     const handleModeSwitch = () => {
         setIsRegister((prev) => !prev);

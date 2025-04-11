@@ -2,6 +2,7 @@
 import "./globals.css";
 import QueryProvider from "@/Context/QueryProvider";
 import { ThemeProvider } from "./component/ThemeProvider";
+import { Toaster } from "@/components/ui/sonner";
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -19,6 +20,7 @@ export default function RootLayout({
           <QueryProvider>
             {children}
           </QueryProvider>
+          <Toaster />
         </ThemeProvider>
       </body>
     </html>
