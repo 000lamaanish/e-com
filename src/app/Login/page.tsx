@@ -36,7 +36,6 @@ const RegisterForm: React.FC = () => {
 
     const onSubmit = (data: RegisterFormData | LoginFormData) => {
         console.log("Form Data:", data);
-        //  Use toast from sonner
         toast.success(
             `${isRegister ? "Registered" : "Logged in"} successfully! 🎉`,
             { description: "Data saved successfully." }
