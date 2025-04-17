@@ -1,4 +1,5 @@
 import axios from "axios";
+import { useQuery } from "@tanstack/react-query";
 
 // Base API instance
 const api = axios.create({
@@ -16,5 +17,20 @@ export async function fetchProducts<T>(endpoint: string): Promise<T> {
         throw new Error("Failed to fetch data");
     }
 }
+// Fetch function
+const fetchProduct = async (id: string) => {
+    const response = await api.get(`/products/${id}`);
+    return response.data;
+};
 
-export default api; // Exporting the axios instance if needed elsewhere
+// React Query Hook
+export function useProduct(id: string) {
+    return useQuery({
+        queryKey: ["product", id],
+        queryFn: () => fetchProduct(id),
+        enabled: !!id,
+    });
+}
+
+
+export default api; 
