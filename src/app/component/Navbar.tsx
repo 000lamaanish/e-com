@@ -4,9 +4,11 @@ import { assets } from "@/assets/assets";
 import Link from "next/link"
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
+import { useCartStore } from "@/lib/store/cartstore";
 
 
 const Navbar = () => {
+    const cart = useCartStore((state) => state.cart);
 
     return (
         <nav className="flex items-center justify-between px-6 md:px-16 lg:px-32 py-3 border-b border-gray-300 text-white-700">
@@ -25,8 +27,8 @@ const Navbar = () => {
                 <Link href="/About" className="hover:text-yellow-900 transition">
                     About Us
                 </Link>
-                <Link href="/Contact" className="hover:text-yellow-900 transition">
-                    Contact
+                <Link href="/cart" className="hover:text-yellow-900 transition">
+                    Cart ({cart.length})
                 </Link>
 
 
