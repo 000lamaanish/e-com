@@ -5,6 +5,7 @@ import Link from "next/link"
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { useCartStore } from "@/lib/store/cartstore";
+import Searchbar from "./searchbar";
 
 
 const Navbar = () => {
@@ -35,7 +36,7 @@ const Navbar = () => {
             </div>
 
             <ul className="hidden md:flex items-center gap-4 ">
-                <Image className="w-4 h-4" src={assets.search_icon} alt="search icon" />
+                <Searchbar />
                 <Link href={"/Login"}>
                     <Button className="flex items-center gap-2 hover:text-gray-900 transition">
                         <Image src={assets.user_icon} alt="user icon" />
