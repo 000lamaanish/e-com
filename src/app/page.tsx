@@ -4,8 +4,7 @@ import ProductList from "./ProductList/page";
 import Sliderpage from "./component/Sliderpage";
 import FeaturedProduct from "./component/featuredpage";
 import Footer from "./component/Footer";
-import CategoryPage from "./component/CategoryPage";
-import UserDetailPage from "./component/userDetail";
+
 
 export default function Home() {
 
@@ -16,9 +15,7 @@ export default function Home() {
       <Sliderpage />
       <FeaturedProduct />
       <br />
-      <CategoryPage />
       <ProductList />
-      <UserDetailPage />
       <Footer />
 
     </div>
