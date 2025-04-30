@@ -31,6 +31,17 @@ export function useProduct(id: string) {
         enabled: !!id,
     });
 }
+// Function to fetch all products
+const fetchAllProducts = async () => {
+    const response = await api.get("/products");
+    return response.data;
+};
 
+export const useProducts = () => {
+    return useQuery({
+        queryKey: ["products"],
+        queryFn: fetchAllProducts,
+    });
+};
 
 export default api; 
