@@ -175,7 +175,7 @@ export default function UserDetailPage() {
                         </CardContent>
 
                         <div className="text-right">
-                            <Button type="submit">Save Details</Button>
+                            <Button type="submit">Confirm order</Button>
                         </div>
                     </Card>
                 </form>
