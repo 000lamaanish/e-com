@@ -12,7 +12,7 @@ const Navbar = () => {
     const cart = useCartStore((state) => state.cart);
 
     return (
-        <nav className="flex items-center justify-between px-6 md:px-16 lg:px-32 py-3 border-b border-gray-300 text-white-700">
+        <nav className="flex items-center justify-between px-6 md:px-16 lg:px-32 py-3 border-b border-gray-300 text-white-700 sticky top-0 z-50 bg-white">
             <Image
                 className="cursor-pointer w-28 md:w-32"
                 src={assets.logo}
@@ -22,10 +22,10 @@ const Navbar = () => {
                 <Link href="/" className="hover:text-yellow-900 transition">
                     Home
                 </Link>
-                <Link href="/all-products" className="hover:text-yellow-900 transition">
+                <Link href="/ProductList" className="hover:text-yellow-900 transition">
                     Shop
                 </Link>
-                <Link href="/About" className="hover:text-yellow-900 transition">
+                <Link href="/" className="hover:text-yellow-900 transition">
                     About Us
                 </Link>
                 <Link href="/cart" className="hover:text-yellow-900 transition">

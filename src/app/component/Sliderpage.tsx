@@ -1,5 +1,7 @@
 "use client";
 
+
+import { useRouter } from 'next/navigation';
 import { assets } from '@/assets/assets';
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
@@ -15,6 +17,8 @@ interface SliderItem {
 }
 
 const Sliderpage: React.FC = () => {
+    const router = useRouter();
+
     const sliderData: SliderItem[] = [
         {
             id: 1,
@@ -56,7 +60,9 @@ const Sliderpage: React.FC = () => {
     const handleSlideChange = (index: number) => {
         setCurrentSlide(index);
     };
-
+    const handleBuyClick = (id: number) => {
+        router.push(`/product/${id}`);
+    };
     return (
         <div
             className="overflow-hidden relative w-full"
@@ -73,15 +79,20 @@ const Sliderpage: React.FC = () => {
                         className="flex flex-col-reverse md:flex-row items-center justify-between bg-[#E6E9F2] py-8 md:px-14 px-5 mt-6 rounded-xl min-w-full"
                     >
                         <div className="md:pl-8 mt-10 md:mt-0">
-                            <p className="md:text-base text-orange-600 pb-1">{slide.offer}</p>
-                            <h1 className="max-w-lg md:text-[40px] md:leading-[48px] text-2xl font-semibold">
+                            <p
+                                className="md:text-base text-orange-600 pb-1">{slide.offer}</p>
+                            <h1
+                                className="max-w-lg md:text-[40px] md:leading-[48px] text-2xl font-semibold">
                                 {slide.title}
                             </h1>
                             <div className="flex items-center mt-4 md:mt-6">
-                                <Button className="md:px-10 px-7 md:py-2.5 py-2 bg-orange-600 rounded-full text-white font-medium">
+                                <Button
+                                    onClick={() => handleBuyClick(slide.id)}
+                                    className="md:px-10 px-7 md:py-2.5 py-2 bg-orange-600 rounded-full text-white font-medium">
                                     {slide.buttonText1}
                                 </Button>
-                                <Button className="group flex items-center gap-2 px-6 py-2.5 font-medium">
+                                <Button
+                                    className="group flex items-center gap-2 px-6 py-2.5 font-medium">
                                     {slide.buttonText2}
                                     <Image
                                         className="group-hover:translate-x-1 transition"
