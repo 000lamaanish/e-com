@@ -5,7 +5,6 @@ import Sliderpage from "./component/Sliderpage";
 import FeaturedProduct from "./component/featuredpage";
 import Footer from "./component/Footer";
 
-
 export default function Home() {
 
   return (
@@ -13,11 +12,12 @@ export default function Home() {
       <Navbar />
       <ModeToggle />
       <Sliderpage />
-      <FeaturedProduct />
       <br />
       <ProductList />
+      <FeaturedProduct />
+      <br />
+      <br />
       <Footer />
-
     </div>
   );
 }
