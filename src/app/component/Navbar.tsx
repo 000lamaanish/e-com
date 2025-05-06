@@ -12,7 +12,7 @@ const Navbar = () => {
     const cart = useCartStore((state) => state.cart);
 
     return (
-        <nav className="flex items-center justify-between px-6 md:px-16 lg:px-32 py-3 border-b border-gray-300 text-white-700 sticky top-0 z-50 bg-white">
+        <nav className="py-2 h-14 flex items-center justify-between px-6 md:px-16 lg:px-32 py-3 border-b border-gray-300 text-white-700 sticky top-0 z-50 bg-white">
             <Image
                 className="cursor-pointer w-28 md:w-32"
                 src={assets.logo}
