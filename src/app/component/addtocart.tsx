@@ -31,7 +31,7 @@ export default function AddToCartButtons({ product }: { product: Product }) {
     };
 
     return (
-        <div className="flex gap-4">
+        <div className="flex gap-4 bg-white dark:bg-black text-black dark:text-white p-4">
             <button
                 onClick={handleAdd}
                 className="w-full mt-3 bg-orange-500 hover:bg-orange-600 text-white py-2 px-4 rounded text-md font-semibold shadow-sm transition">

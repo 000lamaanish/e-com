@@ -38,7 +38,7 @@ const FeaturedProduct = () => {
         }
     };
     return (
-        <div className="mt-14">
+        <div className="mt-14 bg-white dark:bg-black text-black dark:text-white p-4">
             <div className="flex flex-col items-center">
                 <p className="text-3xl font-medium">Featured Products</p>
                 <div className="w-28 h-0.5 bg-orange-600 mt-2"></div>
@@ -51,6 +51,7 @@ const FeaturedProduct = () => {
                                 src={image}
                                 alt={title}
                                 fill
+                                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                                 className="object-cover transition duration-300 group-hover:brightness-75"
                             />
                         </div>
