@@ -1,18 +1,27 @@
-"use client";
+'use client';
 
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import * as z from "zod";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import * as z from 'zod';
+import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent } from '@/components/ui/card';
+import {
+    Form,
+    FormControl,
+    FormField,
+    FormItem,
+    FormLabel,
+    FormMessage,
+} from '@/components/ui/form';
+// import { toast } from 'sonner';
+import { useRouter } from 'next/navigation';
 
 // Zod Schema
 const userDetailSchema = z.object({
-    fullName: z.string().min(2, "Full name is required"),
-    phone: z.string().min(10, "Phone number is required"),
+    fullName: z.string().min(2, 'Full name is required'),
+    phone: z.string().min(10, 'Phone number is required'),
     street: z.string().min(3),
     city: z.string().min(2),
     state: z.string().min(2),
@@ -24,34 +33,35 @@ const userDetailSchema = z.object({
 type UserDetailFormData = z.infer<typeof userDetailSchema>;
 
 export default function UserDetailPage() {
+    const router = useRouter(); // Moved inside the component
+
     const form = useForm<UserDetailFormData>({
         resolver: zodResolver(userDetailSchema),
         defaultValues: {
-            fullName: "",
-            phone: "",
-            street: "",
-            city: "",
-            state: "",
-            zip: "",
-            country: "",
-            notes: "",
+            fullName: '',
+            phone: '',
+            street: '',
+            city: '',
+            state: '',
+            zip: '',
+            country: '',
+            notes: '',
         },
     });
 
     const onSubmit = (data: UserDetailFormData) => {
-        console.log("User Details:", data);
-        // Send data to API or next step
+        console.log('Payment Data:', data);
+        router.push('/payment');
     };
 
     return (
-        <div className="max-w-3xl mx-auto p-6">
+        <div className="max-w-3xl mx-auto p-6 bg-white dark:bg-black text-black dark:text-white p-4">
             <h1 className="text-2xl font-bold mb-4">User Details</h1>
 
             <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)}>
                     <Card className="p-4 space-y-4">
                         <CardContent className="grid grid-cols-1 md:grid-cols-2 gap-4">
-
                             {/* Full Name */}
                             <FormField
                                 control={form.control}
@@ -171,7 +181,6 @@ export default function UserDetailPage() {
                                     </FormItem>
                                 )}
                             />
-
                         </CardContent>
 
                         <div className="text-right">

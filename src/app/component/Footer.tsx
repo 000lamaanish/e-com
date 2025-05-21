@@ -5,7 +5,7 @@ import { FaTwitter, FaGithub, FaLinkedin } from "react-icons/fa";
 
 const Footer = () => {
     return (
-        <footer className="bg-white text-gray-800">
+        <footer className="bg-white dark:bg-black text-black dark:text-white p-4">
             <div className="flex flex-col md:flex-row items-start justify-between px-6 md:px-16 lg:px-32 gap-10 py-14 border-b border-gray-700">
                 <div className="w-full md:w-2/5">
                     <Image className="w-28 md:w-32" src={assets.logo} alt="logo" />

@@ -35,7 +35,7 @@ export default function ProductList() {
     if (isError) return <p>Error: {(error as Error).message}</p>;
 
     return (
-        <div className="min-h-screen bg-gray-100 p-6 sm:p-10">
+        <div className="min-h-screen bg-gray-100 p-6 sm:p-10 bg-white dark:bg-black text-black dark:text-white p-4">
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                 {paginatedProducts?.map((product) => (
                     <Link key={product.id} href={`/productdetail/${product.id}`}>
@@ -51,9 +51,9 @@ export default function ProductList() {
                             </h2>
                             <p className="text-lg font-bold text-red-600 mt-2">${product.price.toFixed(2)}</p>
                             <p className="text-xs text-gray-500">{product.category}</p>
-                            <button className="mt-4 w-full py-2 bg-yellow-400 text-black rounded hover:bg-yellow-500 transition">
+                            {/* <button className="mt-4 w-full py-2 bg-yellow-400 text-black rounded hover:bg-yellow-500 transition">
                                 View Product
-                            </button>
+                            </button> */}
                         </div>
                     </Link>
                 ))}
