@@ -41,20 +41,20 @@ const RegisterForm: React.FC = () => {
             { description: "Data saved successfully." }
         );
     };
+
     const handleModeSwitch = () => {
         setIsRegister((prev) => !prev);
         form.reset();
     };
 
     return (
-        // <div className="bg-white dark:bg-black text-black dark:text-white p-4">
-        <div className="flex items-center justify-center min-h-screen bg-gray-100">
-            <div className="bg-white p-6 sm:p-8 rounded-lg shadow-lg w-full max-w-md bg-white dark:bg-black text-black dark:text-white p-4">
-                <h2 className="text-2xl font-bold text-center text-green-600">
+        <div className="flex items-center justify-center min-h-screen bg-background">
+            <div className="bg-card p-6 sm:p-8 rounded-lg shadow-lg w-full max-w-md">
+                <h2 className="text-2xl font-bold text-center text-primary">
                     {isRegister ? "Register" : "Login"}
                 </h2>
 
-                <Form{...form}>
+                <Form {...form}>
                     <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 mt-6">
                         {isRegister && (
                             <FormField
@@ -99,28 +99,24 @@ const RegisterForm: React.FC = () => {
                                 </FormItem>
                             )}
                         />
-                        <button
-                            type="submit"
-                            className="w-full mt-4 bg-green-500 text-white py-2 rounded-lg shadow-md hover:bg-green-600 transition"
-                        >
-                            {isRegister ? "Register" : "Login"}
-                        </button>
 
+                        <Button type="submit" className="w-full mt-4">
+                            {isRegister ? "Register" : "Login"}
+                        </Button>
                     </form>
                 </Form>
 
-                <p className="text-center text-sm text-gray-600 mt-4">
+                <p className="text-center text-sm text-muted-foreground mt-4">
                     {isRegister ? "Already have an account? " : "New to our website? "}
                     <span
                         onClick={handleModeSwitch}
-                        className="text-green-500 font-semibold cursor-pointer hover:underline"
+                        className="text-primary font-semibold cursor-pointer hover:underline"
                     >
                         {isRegister ? "Switch to Login" : "Switch to Register"}
                     </span>
                 </p>
             </div>
         </div>
-        // </div>
     );
 };
 

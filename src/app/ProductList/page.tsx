@@ -3,6 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import { fetchProducts } from "@/lib/Utils/Api";
 import { useState } from "react";
 import Link from "next/link";
+import { Button } from "@/components/ui/button";
 
 type Product = {
     id: number;
@@ -35,8 +36,8 @@ export default function ProductList() {
     if (isError) return <p>Error: {(error as Error).message}</p>;
 
     return (
-        <div className="min-h-screen bg-gray-100 p-6 sm:p-10 bg-white dark:bg-black text-black dark:text-white p-4">
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        <div className="min-h-screen bg-gray-100 p-6 sm:p-10 bg-white dark:bg-black text-black dark:text-white p-4 select-none">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 select-none">
                 {paginatedProducts?.map((product) => (
                     <Link key={product.id} href={`/productdetail/${product.id}`}>
 
@@ -51,32 +52,28 @@ export default function ProductList() {
                             </h2>
                             <p className="text-lg font-bold text-red-600 mt-2">${product.price.toFixed(2)}</p>
                             <p className="text-xs text-gray-500">{product.category}</p>
-                            {/* <button className="mt-4 w-full py-2 bg-yellow-400 text-black rounded hover:bg-yellow-500 transition">
-                                View Product
-                            </button> */}
+
                         </div>
                     </Link>
                 ))}
             </div>
             {/* Pagination Controls */}
             <div className="flex justify-center mt-10 space-x-4">
-                <button
+                <Button
                     onClick={handlePrev}
                     disabled={page === 1}
-                    className="px-4 py-2 bg-gray-300 rounded hover:bg-gray-400 disabled:opacity-50"
                 >
                     Previous
-                </button>
-                <span className="text-gray-700 font-medium">
+                </Button>
+                <span className="text-white-700 font-medium">
                     Page {page} of {totalPages}
                 </span>
-                <button
+                <Button
                     onClick={handleNext}
                     disabled={page === totalPages}
-                    className="px-4 py-2 bg-gray-300 rounded hover:bg-gray-400 disabled:opacity-50"
                 >
                     Next
-                </button>
+                </Button>
             </div>
         </div>
 

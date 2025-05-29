@@ -3,6 +3,8 @@ import "./globals.css";
 import QueryProvider from "@/Context/QueryProvider";
 import { ThemeProvider } from "./component/ThemeProvider";
 import { Toaster } from "@/components/ui/sonner";
+import Navbar from "./component/Navbar";
+import Footer from "./component/Footer";
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -18,7 +20,11 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <QueryProvider>
+            <Navbar />
             {children}
+            <br />
+            <br />
+            <Footer />
           </QueryProvider>
           <Toaster />
         </ThemeProvider>

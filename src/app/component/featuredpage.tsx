@@ -15,13 +15,13 @@ const products = [
     {
         id: 2,
         image: assets.womens_clothes,
-        title: "Men's collection",
+        title: "Women's collection",
         description: "shop the latest women's collection, and more.",
     },
     {
         id: 3,
         image: assets.mens_clothes,
-        title: "Women's collection",
+        title: "Men's collection",
         description: "Shop the latest men's collection, and more.",
     },
 ];

@@ -1,4 +1,4 @@
-import Navbar from "./component/Navbar";
+// import Navbar from "./component/Navbar";
 
 import ProductList from "./ProductList/page";
 import Sliderpage from "./component/Sliderpage";
@@ -9,15 +9,14 @@ export default function Home() {
 
   return (
     <div>
-      <Navbar />
+      {/* <Navbar /> */}
 
       <Sliderpage />
       <br />
       <ProductList />
       <FeaturedProduct />
-      <br />
-      <br />
-      <Footer />
+
+
     </div>
   );
 }
