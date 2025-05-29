@@ -97,7 +97,7 @@ const Sliderpage: React.FC = () => {
                                     {slide.buttonText1}
                                 </Button>
                                 <Button
-                                    className="group flex items-center gap-2 text-orange-600 hover:text-orange-700 px-4 py-2 transition font-medium"
+                                    className="hover:text-orange-700 px-4 py-2 transition font-medium"
                                     variant="ghost"
                                 >
                                     {slide.buttonText2}

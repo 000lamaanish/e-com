@@ -31,24 +31,21 @@ const ProductTable: React.FC = () => {
         queryFn: fetchProducts,
     });
 
-    const columns = useMemo<ColumnDef<Product>[]>(
-        () => [
-            {
-                accessorKey: 'title',
-                header: 'Title',
-            },
-            {
-                accessorKey: 'price',
-                header: 'Price',
-                cell: info => `$${info.getValue()}`,
-            },
-            {
-                accessorKey: 'category',
-                header: 'Category',
-            },
-        ],
-        []
-    );
+    const columns = useMemo<ColumnDef<Product>[]>(() => [
+        {
+            accessorKey: 'title',
+            header: 'Title',
+        },
+        {
+            accessorKey: 'price',
+            header: 'Price',
+            cell: info => `$${info.getValue()}`,
+        },
+        {
+            accessorKey: 'category',
+            header: 'Category',
+        },
+    ], []);
 
     const [pagination, setPagination] = useState({
         pageIndex: 0,
@@ -71,12 +68,12 @@ const ProductTable: React.FC = () => {
 
     return (
         <div className="p-4">
-            <table className="min-w-full border border-gray-300">
-                <thead className="bg-gray-100">
+            <table className="min-w-full border border-gray-300 dark:border-gray-700">
+                <thead className="bg-gray-100 dark:bg-gray-800">
                     {table.getHeaderGroups().map(headerGroup => (
                         <tr key={headerGroup.id}>
                             {headerGroup.headers.map(header => (
-                                <th key={header.id} className="px-4 py-2 border-b">
+                                <th key={header.id} className="px-4 py-2 border-b dark:border-gray-700">
                                     {header.isPlaceholder
                                         ? null
                                         : flexRender(
@@ -90,9 +87,9 @@ const ProductTable: React.FC = () => {
                 </thead>
                 <tbody>
                     {table.getRowModel().rows.map(row => (
-                        <tr key={row.id} className="hover:bg-gray-50">
+                        <tr key={row.id} className="hover:bg-gray-50 dark:hover:bg-gray-700">
                             {row.getVisibleCells().map(cell => (
-                                <td key={cell.id} className="px-4 py-2 border-b">
+                                <td key={cell.id} className="px-4 py-2 border-b dark:border-gray-700">
                                     {flexRender(
                                         cell.column.columnDef.cell,
                                         cell.getContext()
@@ -103,22 +100,29 @@ const ProductTable: React.FC = () => {
                     ))}
                 </tbody>
             </table>
+
             {/* Pagination Controls */}
             <div className="flex justify-center mt-4 space-x-4">
                 <button
                     onClick={() => table.previousPage()}
                     disabled={!table.getCanPreviousPage()}
-                    className="px-4 py-2 bg-gray-300 rounded hover:bg-gray-400 disabled:opacity-50"
+                    className="px-4 py-2 rounded
+                               bg-black text-white hover:bg-gray-900
+                               dark:bg-white dark:text-black dark:hover:bg-gray-200
+                               disabled:opacity-50"
                 >
                     Previous
                 </button>
-                <span className="text-gray-700 font-medium">
+                <span className="text-gray-700 dark:text-gray-200 font-medium">
                     Page {table.getState().pagination.pageIndex + 1} of {table.getPageCount()}
                 </span>
                 <button
                     onClick={() => table.nextPage()}
                     disabled={!table.getCanNextPage()}
-                    className="px-4 py-2 bg-gray-300 rounded hover:bg-gray-400 disabled:opacity-50"
+                    className="px-4 py-2 rounded
+                               bg-black text-white hover:bg-gray-900
+                               dark:bg-white dark:text-black dark:hover:bg-gray-200
+                               disabled:opacity-50"
                 >
                     Next
                 </button>

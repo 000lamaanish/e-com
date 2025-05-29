@@ -12,7 +12,7 @@ const Navbar = () => {
     const cart = useCartStore((state) => state.cart);
 
     return (
-        <nav className="bg-white dark:bg-black text-black dark:text-white h-16 flex items-center justify-between px-4 md:px-8 lg:px-16 border-b border-gray-200 dark:border-gray-700 shadow-sm sticky top-0 z-50">
+        <nav className="navbar-base">
 
             {/* Logo */}
             <Link href="/">
@@ -26,17 +26,17 @@ const Navbar = () => {
             </Link>
 
             {/* Nav Links */}
-            <div className="flex items-center gap-4 lg:gap-8 max-md:hidden text-sm font-medium tracking-wide">
-                <Link href="/" className="hover:text-yellow-700 transition-colors duration-200">
+            <div className="nav-links">
+                <Link href="/" className="nav-link">
                     Home
                 </Link>
-                <Link href="/ProductList" className="hover:text-yellow-700 transition-colors duration-200">
+                <Link href="/ProductList" className="nav-link">
                     Shop
                 </Link>
-                <Link href="/Table" className="hover:text-yellow-700 transition-colors duration-200">
+                <Link href="/Table" className="nav-link">
                     Table
                 </Link>
-                <Link href="/cart" className="hover:text-yellow-700 transition-colors duration-200">
+                <Link href="/cart" className="nav-link">
                     Cart ({cart.length})
                 </Link>
 
@@ -50,14 +50,14 @@ const Navbar = () => {
 
                 {/* Account Button */}
                 <Link href="/Login">
-                    <Button className="flex items-center gap-2 px-4 py-2 text-sm font-medium bg-gray-800 text-white hover:bg-gray-700 rounded-full transition">
+                    <Button className="account-button">
                         <Image src={assets.user_icon} alt="user icon" width={18} height={18} />
                         Account
                     </Button>
                 </Link>
 
                 {/* Dark Mode Toggle */}
-                <div className="p-2 rounded-full bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition">
+                <div className="dark toggle">
                     <ModeToggle />
                 </div>
             </ul>
